@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description"
+              content="Enginnering and Science Building Anomaly Detection">
+        <meta name="keywords" content="ESB">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ESB Anomaly Detection</title>
+      
+        <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+              rel="stylesheet">
+      
+        <link rel="stylesheet" href="./static/css/bulma.min.css">
+        <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+        <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+        <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+        <link rel="stylesheet" href="./static/css/index.css">
+      
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script defer src="./static/js/fontawesome.all.min.js"></script>
+        <script src="./static/js/bulma-carousel.min.js"></script>
+        <script src="./static/js/bulma-slider.min.js"></script>
+        <script src="./static/js/index.js"></script>
+    </head>
+
+    <body>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+          <div class="navbar-brand">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+          <div class="navbar-menu">
+            <div class="navbar-start">
+              <a class="navbar-item" href="index.html">
+                <span class="underscore">Home</span>
+              </a>
+            </div>
+          </div>
+        </nav>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <div class="content">
+                    <h3>KMeans</h3>
+                    <iframe src="static/images/connectivity_plot_kmean.html" width="100%" height="700px"></iframe>
+                </div>
+
+                <div class="columns">
+                    <!-- Column for dropdown -->
+                    <div class="column is-6">
+                        <div class="content">
+                            <h4>Select a path</h4>
+                            <div class="control">
+                                <div class="select is-fullwidth">
+                                    <select id="path-select">
+                                        <option value="1">Path 1</option>
+                                        <option value="2">Path 2</option>
+                                        <option value="3">Path 3</option>
+                                        <option value="4">Path 4</option>
+                                        <option value="5">Path 5</option>
+                                        <option value="6">Path 6</option>
+                                        <option value="7">Path 7</option>
+                                        <option value="8">Path 8</option>
+                                        <option value="9">Path 9</option>
+                                        <option value="10">Path 10</option>
+                                        <option value="11">Path 11</option>
+                                        <option value="12">Path 12</option>
+                                        <option value="13">Path 13</option>
+                                        <option value="14">Path 14</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="path-images" style="height: 1000px;">
+                                <!-- The selected path iframe will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column for images -->
+                    <div class="column">
+                        <div class="content">
+                            <h4>Path visualization by feature</h4>
+                            <div id="feature-images" style="height: 700px; overflow-y: scroll;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            // When the dropdown selection changes, update the images
+            document.getElementById('path-select').addEventListener('change', function() {
+                var path = this.value;
+                var pathImages = document.getElementById('path-images');
+                var featureImages = document.getElementById('feature-images');
+                
+                // Clear the current images
+                while (pathImages.firstChild) {
+                    pathImages.removeChild(pathImages.firstChild);
+                }
+        
+                while (featureImages.firstChild) {
+                    featureImages.removeChild(featureImages.firstChild);
+                }
+        
+                // Replace with images from the selected path
+                var iframe = document.createElement('iframe');
+                iframe.src = `static/images/kmean_90/connectivity_plot_kmeans_90_path_${path}.html`;
+                iframe.width = "100%";
+                iframe.height = "700px";
+                pathImages.appendChild(iframe);
+        
+                // Assuming the paths are from 1 to 17
+                for (let i = 1; i < 17; i++) {
+                    var img = document.createElement('img');
+                    img.src = `static/images/fall_2020_feature_visualization/kmeans_labels/${path}/${i}.png`;
+                    img.alt = `Feature ${i}`;
+                    img.style.width = '100%';
+                    featureImages.appendChild(img);
+                }
+            });
+        
+            // Initialize with the first option
+            document.getElementById('path-select').dispatchEvent(new Event('change'));
+        </script>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="content has-text-centered">
+                </div>
+                <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content has-text-centered">
+                    <p>
+                        <a href="https://github.com/RheaH-yx/ESB-Anomaly-Detection">Source code</a>.
+                    </p>
+                    <p>
+                        Website template borrowed from
+                        <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a>.
+                    </p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
