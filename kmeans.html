@@ -72,7 +72,6 @@
                                         <option value="11">Path 11</option>
                                         <option value="12">Path 12</option>
                                         <option value="13">Path 13</option>
-                                        <option value="14">Path 14</option>
                                     </select>
                                 </div>
                             </div>
@@ -112,7 +111,7 @@
         
                 // Replace with images from the selected path
                 var iframe = document.createElement('iframe');
-                iframe.src = `static/images/kmean_90/connectivity_plot_kmeans_90_path_${path}.html`;
+                iframe.src = `static/images/paths/kmeans/connectivity_plot_kmeans_90_path_${path}.html`;
                 iframe.width = "100%";
                 iframe.height = "700px";
                 pathImages.appendChild(iframe);
@@ -120,7 +119,7 @@
                 // Assuming the paths are from 1 to 17
                 for (let i = 1; i < 17; i++) {
                     var img = document.createElement('img');
-                    img.src = `static/images/fall_2020_feature_visualization/kmeans_labels/${path}/${i}.png`;
+                    img.src = `static/images/paths/kmeans_feature/${path}/${i}.png`;
                     img.alt = `Feature ${i}`;
                     img.style.width = '100%';
                     featureImages.appendChild(img);

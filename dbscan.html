@@ -64,7 +64,6 @@
                                         <option value="3">Path 3</option>
                                         <option value="4">Path 4</option>
                                         <option value="5">Path 5</option>
-                                        <option value="6">Path 6</option>
                                         
                                     </select>
                                 </div>
@@ -105,7 +104,7 @@
         
                 // Replace with images from the selected path
                 var iframe = document.createElement('iframe');
-                iframe.src = `static/images/dbscan_90/connectivity_plot_dbscan_90_path_${path}.html`;
+                iframe.src = `static/images/paths/dbscan/path_${path}.html`;
                 iframe.width = "100%";
                 iframe.height = "700px";
                 pathImages.appendChild(iframe);
@@ -113,7 +112,7 @@
                 // Assuming the paths are from 1 to 17
                 for (let i = 1; i < 17; i++) {
                     var img = document.createElement('img');
-                    img.src = `static/images/fall_2020_feature_visualization/dbscan_labels/${path}/${i}.png`;
+                    img.src = `static/images/paths/dbscan_feature/${path}/${i}.png`;
                     img.alt = `Feature ${i}`;
                     img.style.width = '100%';
                     featureImages.appendChild(img);
