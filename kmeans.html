@@ -107,15 +107,13 @@
                 while (featureImages.firstChild) {
                     featureImages.removeChild(featureImages.firstChild);
                 }
-        
-                // Replace with images from the selected path
+
                 var iframe = document.createElement('iframe');
                 iframe.src = `static/images/paths/kmeans/connectivity_plot_kmeans_90_path_${path}.html`;
                 iframe.width = "100%";
                 iframe.height = "700px";
                 pathImages.appendChild(iframe);
         
-                // Assuming the paths are from 1 to 17
                 for (let i = 1; i < 17; i++) {
                     var img = document.createElement('img');
                     img.src = `static/images/paths/kmeans_feature/${path}/${i}.png`;
