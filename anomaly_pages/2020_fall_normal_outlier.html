@@ -1,0 +1,99 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Engineering and Science Building Anomaly Detection">
+    <meta name="keywords" content="ESB">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ESB Anomaly Detection</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/bulma.min.css">
+    <link rel="stylesheet" href="../static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="../static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="../static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="../static/js/fontawesome.all.min.js"></script>
+    <script src="../static/js/bulma-carousel.min.js"></script>
+    <script src="../static/js/bulma-slider.min.js"></script>
+    <script src="../static/js/index.js"></script>
+</head>
+
+
+<body>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+    <div class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item" href="../index.html">
+                <span class="underscore">Home</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<section class="section">
+    <div class="container is-max-desktop">
+        <div class="content">
+            <h3>Loss Distribution with threshold of 0.078</h3>
+            <iframe src="../static/images/anomaly/2020_fall_normal_outliers/loss_distribution.png"
+                    width="100%" height="700px"></iframe>
+        </div>
+
+        <!-- Column for images -->
+        <div class="column">
+            <div class="content">
+                <h4>Days with Anomalous Points</h4>
+                <div id="feature-images" style="height: 700px; overflow-y: scroll;"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    var imagesPath = '../static/images/anomaly/2020_fall_normal_outliers';
+    var featureImages = document.getElementById('feature-images');
+
+    for (let i = 1; i <= 16; i++) {
+        var img = document.createElement('img');
+        img.src = `${imagesPath}/${i}.png`;
+        img.alt = `Feature ${i}`;
+        img.style.width = '100%';
+        featureImages.appendChild(img);
+    }
+</script>
+
+<footer class="footer">
+    <div class="container">
+        <div class="content has-text-centered">
+            <a class="icon-link" href="./static/videos/nerfies_paper.pdf">
+                <i class="fas fa-file-pdf"></i>
+            </a>
+            <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+        <div class="columns is-centered">
+            <div class="column is-8">
+                <div class="content has-text-centered">
+                    <p>
+                        <a href="https://github.com/RheaH-yx/ESB-Anomaly-Detection">Source code</a>.
+                    </p>
+                    <p>
+                        Website template borrowed from
+                        <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
