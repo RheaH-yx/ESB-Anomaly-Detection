@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description"
+              content="Enginnering and Science Building Anomaly Detection">
+        <meta name="keywords" content="ESB">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ESB Anomaly Detection</title>
+      
+        <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+              rel="stylesheet">
+      
+        <link rel="stylesheet" href="../static/css/bulma.min.css">
+        <link rel="stylesheet" href="../static/css/bulma-carousel.min.css">
+        <link rel="stylesheet" href="../static/css/bulma-slider.min.css">
+        <link rel="stylesheet" href="../static/css/fontawesome.all.min.css">
+        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+        <link rel="stylesheet" href="../static/css/index.css">
+      
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script defer src="../static/js/fontawesome.all.min.js"></script>
+        <script src="../static/js/bulma-carousel.min.js"></script>
+        <script src="../static/js/bulma-slider.min.js"></script>
+        <script src="../static/js/index.js"></script>
+    </head>
+
+    <body>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+          <div class="navbar-brand">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+          <div class="navbar-menu">
+            <div class="navbar-start">
+              <a class="navbar-item" href="index.html">
+                <span class="underscore">Home</span>
+              </a>
+            </div>
+          </div>
+        </nav>
+        
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="content">
+                <h3>Feature Plots Visualization</h3>
+            </div>
+    
+            <!-- Content for selecting a date -->
+            <div class="content">
+                <h4>Select a date</h4>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select id="date-select">
+                            
+                            <option value="2021-08-22">2021-08-22</option>
+                            <option value="2021-08-30">2021-08-30</option>
+                            <option value="2021-09-01">2021-09-01</option>
+                            <option value="2021-09-02">2021-09-02</option>
+                            <option value="2021-09-03">2021-09-03</option>
+                            <option value="2021-09-09">2021-09-09</option>
+                            <option value="2021-09-10">2021-09-10</option>
+                            <option value="2021-09-11">2021-09-11</option>
+                            <option value="2021-09-22">2021-09-22</option>
+                            <option value="2021-09-23">2021-09-23</option>
+                            <option value="2021-10-12">2021-10-12</option>
+                            <option value="2021-10-14">2021-10-14</option>
+                            <option value="2021-10-20">2021-10-20</option>
+                            <option value="2021-10-21">2021-10-21</option>
+                            <option value="2021-10-24">2021-10-24</option>
+                            <option value="2021-10-26">2021-10-26</option>
+                            <option value="2021-10-27">2021-10-27</option>
+                            <option value="2021-10-31">2021-10-31</option>
+                            <option value="2021-11-10">2021-11-10</option>
+                            <option value="2021-11-12">2021-11-12</option>
+                            <option value="2021-11-13">2021-11-13</option>
+                            <option value="2021-11-14">2021-11-14</option>
+                            <option value="2021-11-16">2021-11-16</option>
+                            <option value="2021-11-18">2021-11-18</option>
+                            <option value="2021-11-21">2021-11-21</option>
+                            <option value="2021-11-23">2021-11-23</option>
+                            <option value="2021-11-24">2021-11-24</option>
+                            <option value="2021-12-04">2021-12-04</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Container for feature plot images -->
+            <div id="feature-plots" class="feature-plots-grid">
+                <!-- Images will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .feature-plot-image {
+            width: 100%; /* Adjust if necessary */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 10px; /* Space between images */
+        }
+        .feature-plots-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Adjust the number of columns as necessary */
+            gap: 10px; /* Space between grid items */
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var features = [
+                "ESB Chiller Plant plantEfficiency",
+                "ESB_Chillers Demand",
+                "ESB_Chillers percentRefrigerationLoad",
+                "ESB_Chillers tonnage",
+                "Active_Chiller_Load_Percent Value",
+                "Primary_CHW_Flow Value",
+                "Building_Load Value",
+                "ESB_Chillers chillerEvapDifferentialPress",
+                "ESB_Chillers chillerCondDifferentialPress",
+                "ESB_Chillers chillerCondLeavingWaterTemp",
+                "ESB_Chillers chillerEvapEnteringWaterTemp",
+                "ESB_Chillers outdoorAirTemp",
+                "ESB_Chillers chillerEvapLeavingWaterTemp",
+                "ESB_Chillers chillerTotalKw",
+                "ESB_Chillers chillerCondEnteringWaterTemp",
+                "ESB_Chillers chillerEvapWaterFlow"
+            ];
+    
+            function loadImages(date) {
+                var featurePlotsContainer = document.getElementById('feature-plots');
+                featurePlotsContainer.innerHTML = ''; // Clear the current images
+
+                features.forEach(function(feature) {
+                    var img = document.createElement('img');
+                    // Use the feature name directly, assuming it's the same as the image file name
+                    img.src = `../static/images/label_anomalous_dates/2021/${date}/${feature}.png`; // Corrected path
+                    img.alt = feature;
+                    img.classList.add('feature-plot-image');
+                    featurePlotsContainer.appendChild(img);
+                });
+            }
+
+    
+            document.getElementById('date-select').addEventListener('change', function() {
+                loadImages(this.value);
+            });
+    
+            // Initialize the feature plots for the first date
+            loadImages(document.getElementById('date-select').value);
+        });
+    </script>
+
+
+    <footer class="footer">
+        <div class="container">
+                <div class="content has-text-centered">
+                </div>
+                <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content has-text-centered">
+                    <p>
+                        <a href="https://github.com/RheaH-yx/ESB-Anomaly-Detection">Source code</a>.
+                    </p>
+                    <p>
+                        Website template borrowed from
+                        <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a>.
+                    </p>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </footer>
+</body>
+</html>
